@@ -4,9 +4,7 @@ import {AngularFireDatabase, FirebaseObjectObservable} from 'angularfire2/databa
 import { AppUser } from './models/app-user';
 import * as firebase from 'firebase';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class UserService {
 
   constructor(private db: AngularFireDatabase) { }
