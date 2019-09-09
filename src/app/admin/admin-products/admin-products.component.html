@@ -1,6 +1,53 @@
 <p>
   <a routerLink="/admin/product/new" class="btn btn-primary"></a>
 </p>
+<p>
+  <input
+    (keyup)="filter()"
+    type="text" class="form-control" placeholder="Search...">
+</p>
+
+
+<data-table
+  [items]="items"
+  [itemCount]="itemCount"
+  (reload)="reloadItems($event)"
+  >
+  <data-table-column
+    [property]="title"
+    [header]="Title"
+    [sortable]="true"
+    [resizable]="true"
+  >
+
+    <data-table-column
+      [property]="price"
+      [header]="Price"
+      [sortable]="true"
+      [resizable]="true"
+    >
+
+      <ng-template #dataTableCell let-item="product">
+        {{ product.price | currency: 'USD':true s}}
+      </ng-template>
+    </data-table-column>
+    <data-table-column
+      [property]="$key"
+      [sortable]="true"
+      [resizable]="true"
+    >
+      <ng-template #dataTableCell let-item="product">
+        {{ product.price | currency: 'USD':true }}
+      </ng-template>
+    </data-table-column>
+    <data-table-column
+      [property]="'$key'"
+    >
+      <ng-template #dataTableCell let-item="product">
+        <a [routerLink]="['/admin/products/', p.$key]">EDIT</a>
+      </ng-template>
+    </data-table-column>
+</data-table>
 
 <table class="table">
   <thead>
